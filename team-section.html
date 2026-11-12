@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meet Our Team - Garamtech Solution</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    /* ==========================================================================
+       BRAND DESIGN SYSTEM & VARIABLES
+       ========================================================================== */
+    :root {
+      --team-black: #000000;
+      --team-charcoal: #0a0a0a;
+      --team-charcoal-light: #141414;
+      --team-gold: #d4af37;
+      --team-gold-light: #f5d76e;
+      --team-navy: #ffffff;
+      --team-navy-dark: #000000;
+      --team-blue: #d4af37;
+      --team-blue-light: #141414;
+      --team-orange: #d4af37;
+      --team-orange-warm: #f5d76e;
+      --team-ink: #ffffff;
+      --team-muted: #cfcfcf;
+      --team-border: #343434;
+      --team-bg-card: #0a0a0a;
+      --team-bg-section: #000000;
+      --team-font-heading: "Playfair Display", Georgia, serif;
+      --team-font-body: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --team-radius-card: 18px;
+      --team-radius-img: 12px;
+      --team-shadow-card: 0 4px 18px rgba(0, 0, 0, 0.35), 0 1px 3px rgba(0, 0, 0, 0.25);
+      --team-shadow-hover: 0 16px 36px rgba(212, 175, 55, 0.1), 0 4px 12px rgba(0, 0, 0, 0.35);
+      --team-transition: all 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--team-font-body);
+      color: var(--team-ink);
+      background-color: var(--team-bg-section);
+      line-height: 1.65;
+      padding: 40px 20px;
+    }
+
+    /* ==========================================================================
+       MEET OUR TEAM SECTION
+       ========================================================================== */
+    .team-section {
+      padding: 80px 0;
+      background: var(--team-bg-section);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .team-container {
+      width: min(1200px, 100% - 48px);
+      margin-inline: auto;
+    }
+
+    /* Section Header */
+    .team-header {
+      text-align: center;
+      max-width: 720px;
+      margin: 0 auto 56px auto;
+    }
+
+    .team-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--team-font-heading);
+      font-size: 0.8125rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--team-blue);
+      background: var(--team-blue-light);
+      padding: 6px 14px;
+      border-radius: 999px;
+      margin-bottom: 16px;
+    }
+
+    .team-eyebrow i {
+      display: inline-block;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--team-orange);
+      box-shadow: 0 0 8px rgba(212, 175, 55, 0.6);
+    }
+
+    .team-title {
+      font-family: var(--team-font-heading);
+      font-size: clamp(1.85rem, 3.5vw, 2.5rem);
+      font-weight: 800;
+      color: var(--team-navy);
+      line-height: 1.25;
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+    }
+
+    .team-title span {
+      color: var(--team-blue);
+      position: relative;
+      display: inline-block;
+    }
+
+    .team-subtitle {
+      font-size: clamp(0.95rem, 1.5vw, 1.05rem);
+      color: var(--team-muted);
+      line-height: 1.65;
+    }
+
+    /* ==========================================================================
+       TEAM GRID: 4 cols Desktop | 2 cols Tablet | 1 col Mobile
+       ========================================================================== */
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 28px;
+    }
+
+    /* ==========================================================================
+       TEAM CARD COMPONENT
+       ========================================================================== */
+    .team-card {
+      background: var(--team-bg-card);
+      border: 1px solid var(--team-border);
+      border-radius: var(--team-radius-card);
+      padding: 16px 16px 24px 16px;
+      display: flex;
+      flex-direction: column;
+      box-shadow: var(--team-shadow-card);
+      transition: var(--team-transition);
+      position: relative;
+      overflow: hidden;
+      outline: none;
+    }
+
+    /* Subtle top accent bar on card */
+    .team-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--team-orange), var(--team-blue));
+      opacity: 0;
+      transition: opacity 0.35s ease;
+    }
+
+    /* Subtle hover effect: slight lift & soft shadow */
+    .team-card:hover,
+    .team-card:focus-visible {
+      transform: translateY(-7px);
+      box-shadow: var(--team-shadow-hover);
+      border-color: rgba(245, 215, 110, 0.5);
+    }
+
+    .team-card:hover::before,
+    .team-card:focus-visible::before {
+      opacity: 1;
+    }
+
+    /* Image Wrapper: Uniform Crop (4:5 ratio, face-centered) */
+    .team-image-wrapper {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      border-radius: var(--team-radius-img);
+      overflow: hidden;
+      background-color: var(--team-charcoal-light);
+      margin-bottom: 20px;
+    }
+
+    .team-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 20%;
+      display: block;
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* Individual face alignment overrides for optimal portrait framing */
+    .team-card:nth-child(1) .team-image {
+      object-position: center 25%;
+    }
+    .team-card:nth-child(2) .team-image {
+      object-position: center 15%;
+    }
+    .team-card:nth-child(3) .team-image {
+      object-position: center 15%;
+    }
+    .team-card:nth-child(4) .team-image {
+      object-position: center 20%;
+    }
+
+    .team-card:hover .team-image,
+    .team-card:focus-visible .team-image {
+      transform: scale(1.04);
+    }
+
+    /* Subtle badge/pill on card */
+    .team-badge {
+      position: absolute;
+      bottom: 12px;
+      left: 12px;
+      background: rgba(10, 10, 10, 0.92);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      color: #ffffff;
+      font-family: var(--team-font-heading);
+      font-size: 0.6875rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 6px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      pointer-events: none;
+    }
+
+    /* Card Content */
+    .team-content {
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      padding: 0 4px;
+    }
+
+    .team-name {
+      font-family: var(--team-font-heading);
+      font-size: 1.1875rem;
+      font-weight: 700;
+      color: var(--team-navy);
+      line-height: 1.3;
+      margin-bottom: 4px;
+      letter-spacing: -0.01em;
+    }
+
+    .team-role {
+      font-size: 0.84rem;
+      font-weight: 600;
+      color: var(--team-blue);
+      letter-spacing: 0.02em;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .team-role-dot {
+      display: inline-block;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--team-orange);
+    }
+
+    .team-desc {
+      font-size: 0.875rem;
+      color: var(--team-muted);
+      line-height: 1.6;
+      margin-bottom: 16px;
+      flex-grow: 1;
+      /* Clean 3-line clamp */
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    /* Decorative Footer: subtle divider & social/contact icon pills */
+    .team-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 14px;
+      border-top: 1px solid var(--team-border);
+      margin-top: auto;
+    }
+
+    .team-company-tag {
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--team-muted);
+    }
+
+    .team-socials {
+      display: flex;
+      gap: 8px;
+    }
+
+    .team-social-link {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: var(--team-charcoal-light);
+      color: var(--team-navy);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      transition: var(--team-transition);
+    }
+
+    .team-social-link:hover {
+      background: linear-gradient(135deg, var(--team-gold-light), var(--team-gold));
+      color: var(--team-black);
+      transform: translateY(-2px);
+    }
+
+    .team-social-link svg {
+      width: 14px;
+      height: 14px;
+      fill: currentColor;
+    }
+
+    /* ==========================================================================
+       ENTRANCE ANIMATION (Intersection Observer)
+       ========================================================================== */
+    .team-card.reveal-item {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s cubic-bezier(0.2, 0.8, 0.2, 1),
+                  transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    .team-card.reveal-item.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ==========================================================================
+       RESPONSIVE BREAKPOINTS
+       ========================================================================== */
+    /* Tablet: 2 Columns */
+    @media (max-width: 1024px) {
+      .team-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+      }
+      .team-header {
+        margin-bottom: 44px;
+      }
+    }
+
+    /* Mobile: 1 Column */
+    @media (max-width: 600px) {
+      .team-section {
+        padding: 56px 0;
+      }
+      .team-grid {
+        grid-template-columns: 1fr;
+        max-width: 420px;
+        margin-inline: auto;
+        gap: 20px;
+      }
+      .team-card {
+        padding: 14px 14px 20px 14px;
+      }
+      .team-image-wrapper {
+        margin-bottom: 16px;
+      }
+    }
+
+    /* Demo Controls */
+    .team-demo-toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 36px;
+    }
+    .toolbar-label {
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: var(--team-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .ratio-toggle {
+      background: var(--team-charcoal-light);
+      border: 1px solid var(--team-border);
+      color: var(--team-ink);
+      font-family: var(--team-font-heading);
+      font-size: 0.8125rem;
+      font-weight: 600;
+      padding: 6px 14px;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .ratio-toggle:hover {
+      border-color: var(--team-blue);
+      color: var(--team-gold-light);
+    }
+    .ratio-toggle.active {
+      background: linear-gradient(135deg, var(--team-gold-light), var(--team-gold));
+      border-color: var(--team-gold);
+      color: var(--team-black);
+      box-shadow: 0 2px 8px rgba(212, 175, 55, 0.25);
+    }
+    .team-grid.crop-square .team-image-wrapper {
+      aspect-ratio: 1 / 1;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==========================================================================
+       MEET OUR TEAM SECTION
+       ========================================================================== -->
+  <section class="team-section" id="team" aria-labelledby="team-heading">
+    <div class="team-container">
+      
+      <!-- Section Header -->
+      <div class="team-header">
+        <span class="team-eyebrow">
+          <i aria-hidden="true"></i> Leadership &amp; Team
+        </span>
+        <h2 id="team-heading" class="team-title">
+          Meet Our <span>Expert Team</span>
+        </h2>
+        <p class="team-subtitle">
+          Guided by visionary leadership, technical precision, and dedicated field expertise at Garamtech Solution.
+        </p>
+      </div>
+
+      <!-- Demo Aspect Ratio Switcher (Demo controls to preview 4:5 vs 1:1) -->
+      <div class="team-demo-toolbar" aria-label="Demo Aspect Ratio Switcher">
+        <span class="toolbar-label">Crop Ratio:</span>
+        <button type="button" class="ratio-toggle active" data-ratio="portrait">4:5 Portrait</button>
+        <button type="button" class="ratio-toggle" data-ratio="square">1:1 Square</button>
+      </div>
+
+      <!-- Team Members Grid (4 Columns Desktop, 2 Tablet, 1 Mobile) -->
+      <div class="team-grid">
+
+        <!-- Member 1: Sandeep Multani -->
+        <article class="team-card reveal-item" tabindex="0">
+          <div class="team-image-wrapper">
+            <img 
+              class="team-image" 
+              src="assets/images/sandeep-multani.jpg" 
+              alt="Photo of Sandeep Multani, Founder's Director" 
+              loading="lazy"
+            >
+            <span class="team-badge">Leadership</span>
+          </div>
+          <div class="team-content">
+            <h3 class="team-name">Sandeep Multani</h3>
+            <p class="team-role">
+              <span class="team-role-dot" aria-hidden="true"></span>
+              Founder's Director
+            </p>
+            <p class="team-desc">
+              A visionary leader who founded Garamtech Solution and guides its strategy, growth, and commitment to quality.
+            </p>
+            <div class="team-footer">
+              <span class="team-company-tag">Garamtech Solution</span>
+              <div class="team-socials" aria-label="Social profiles for Sandeep Multani">
+                <a href="#contact" class="team-social-link" aria-label="LinkedIn profile">
+                  <svg viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
+                </a>
+                <a href="#contact" class="team-social-link" aria-label="Contact email">
+                  <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Member 2: Kameshwar Roy -->
+        <article class="team-card reveal-item" tabindex="0">
+          <div class="team-image-wrapper">
+            <img 
+              class="team-image" 
+              src="assets/images/kameshwar-roy.jpg" 
+              alt="Photo of Kameshwar Roy, Accountant" 
+              loading="lazy"
+            >
+            <span class="team-badge">Finance</span>
+          </div>
+          <div class="team-content">
+            <h3 class="team-name">Kameshwar Roy</h3>
+            <p class="team-role">
+              <span class="team-role-dot" aria-hidden="true"></span>
+              Accountant
+            </p>
+            <p class="team-desc">
+              Manages the company's accounts and financial operations with precision, keeping every record transparent and well organised.
+            </p>
+            <div class="team-footer">
+              <span class="team-company-tag">Garamtech Solution</span>
+              <div class="team-socials" aria-label="Social profiles for Kameshwar Roy">
+                <a href="#contact" class="team-social-link" aria-label="LinkedIn profile">
+                  <svg viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
+                </a>
+                <a href="#contact" class="team-social-link" aria-label="Contact email">
+                  <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Member 3: Rahul Chauhan -->
+        <article class="team-card reveal-item" tabindex="0">
+          <div class="team-image-wrapper">
+            <img 
+              class="team-image" 
+              src="assets/images/rahul-chauhan.jpg" 
+              alt="Photo of Rahul Chauhan, Technical Head" 
+              loading="lazy"
+            >
+            <span class="team-badge">Operations</span>
+          </div>
+          <div class="team-content">
+            <h3 class="team-name">Rahul Chauhan</h3>
+            <p class="team-role">
+              <span class="team-role-dot" aria-hidden="true"></span>
+              Technical Head
+            </p>
+            <p class="team-desc">
+              Leads the technical team and oversees planning and execution of all projects, ensuring high-quality, on-time delivery.
+            </p>
+            <div class="team-footer">
+              <span class="team-company-tag">Garamtech Solution</span>
+              <div class="team-socials" aria-label="Social profiles for Rahul Chauhan">
+                <a href="#contact" class="team-social-link" aria-label="LinkedIn profile">
+                  <svg viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
+                </a>
+                <a href="#contact" class="team-social-link" aria-label="Contact email">
+                  <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Member 4: Manohar Singh -->
+        <article class="team-card reveal-item" tabindex="0">
+          <div class="team-image-wrapper">
+            <img 
+              class="team-image" 
+              src="assets/images/manohar-singh.jpg" 
+              alt="Photo of Manohar Singh, Technician" 
+              loading="lazy"
+            >
+            <span class="team-badge">Technical</span>
+          </div>
+          <div class="team-content">
+            <h3 class="team-name">Manohar Singh</h3>
+            <p class="team-role">
+              <span class="team-role-dot" aria-hidden="true"></span>
+              Technician
+            </p>
+            <p class="team-desc">
+              Brings hands-on technical skill and experience to project work, ensuring reliable service for every client.
+            </p>
+            <div class="team-footer">
+              <span class="team-company-tag">Garamtech Solution</span>
+              <div class="team-socials" aria-label="Social profiles for Manohar Singh">
+                <a href="#contact" class="team-social-link" aria-label="LinkedIn profile">
+                  <svg viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
+                </a>
+                <a href="#contact" class="team-social-link" aria-label="Contact email">
+                  <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       JAVASCRIPT: Staggered Scroll Reveal & Interactions
+       ========================================================================== -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const teamCards = document.querySelectorAll(".team-card.reveal-item");
+
+      if ("IntersectionObserver" in window) {
+        const teamObserver = new IntersectionObserver(
+          (entries, observer) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                // Determine staggered delay based on card index
+                const index = Array.from(teamCards).indexOf(entry.target);
+                entry.target.style.transitionDelay = `${(index % 4) * 110}ms`;
+                entry.target.classList.add("is-visible");
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          {
+            threshold: 0.15,
+            rootMargin: "0px 0px -40px 0px"
+          }
+        );
+
+        teamCards.forEach((card) => teamObserver.observe(card));
+      } else {
+        // Fallback for browsers without IntersectionObserver
+        teamCards.forEach((card) => card.classList.add("is-visible"));
+      }
+
+      // Demo: Toggle Crop Ratio (4:5 Portrait vs 1:1 Square)
+      const ratioButtons = document.querySelectorAll(".ratio-toggle");
+      const teamGrid = document.querySelector(".team-grid");
+      if (ratioButtons.length && teamGrid) {
+        ratioButtons.forEach((btn) => {
+          btn.addEventListener("click", () => {
+            ratioButtons.forEach((b) => b.classList.remove("active"));
+            btn.classList.add("active");
+            const isSquare = btn.dataset.ratio === "square";
+            teamGrid.classList.toggle("crop-square", isSquare);
+          });
+        });
+      }
+    });
+  </script>
+</body>
+</html>
